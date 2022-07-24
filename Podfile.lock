@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.6.2)
+  - FontAwesome.swift (1.9.1)
+  - Postman (0.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - FontAwesome.swift
+  - Postman
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FontAwesome.swift
+    - Postman
+
+SPEC CHECKSUMS:
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  FontAwesome.swift: 6b52cb7be66eacd28cbfaa0ca7ffd0de4a186a1d
+  Postman: 596b0beec953b4f74b6bb0e30c7e0c54d604b29c
+
+PODFILE CHECKSUM: 53c35038e9b934b565c7026aef62e1b54b294b7d
+
+COCOAPODS: 1.11.3
