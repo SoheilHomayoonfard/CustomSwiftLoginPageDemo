@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Q2Z-K9-4zL">
-                                <rect key="frame" x="40" y="266" width="310" height="344"/>
+                                <rect key="frame" x="40" y="346" width="310" height="264"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cam-N8-Tgx">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="50"/>
@@ -51,24 +51,8 @@
                                             <action selector="EmailFieldCheck:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="4PO-2B-A6u"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nKO-IX-CI9">
-                                        <rect key="frame" x="0.0" y="160" width="310" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="GAa-KZ-vM5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Didot-Italic" family="Didot" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                <color key="value" white="0.58361525759999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="PasswordFieldCheck:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="7xZ-h3-etI"/>
-                                        </connections>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6RT-Rr-Gsp">
-                                        <rect key="frame" x="0.0" y="240" width="310" height="50"/>
+                                        <rect key="frame" x="0.0" y="160" width="310" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cpn-Vm-5hT"/>
                                         </constraints>
@@ -80,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Valid Phone Number!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVy-XN-k0z">
-                                        <rect key="frame" x="0.0" y="320" width="310" height="24"/>
+                                        <rect key="frame" x="0.0" y="240" width="310" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -100,7 +84,6 @@
                     <connections>
                         <outlet property="EmailTextField" destination="bLI-zC-qQc" id="FXx-bt-sjy"/>
                         <outlet property="ErrorLabel" destination="hVy-XN-k0z" id="tN3-yY-MSn"/>
-                        <outlet property="PasswordTextField" destination="nKO-IX-CI9" id="jkr-pG-WRx"/>
                         <outlet property="PhoneNumberTextField" destination="cam-N8-Tgx" id="jR9-7o-YzC"/>
                         <outlet property="RegisterButton" destination="6RT-Rr-Gsp" id="kRP-w9-FYq"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="oO7-pJ-HK0"/>
@@ -219,7 +202,79 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qg3-nG-KKB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2203" y="96"/>
+            <point key="canvasLocation" x="2201.5384615384614" y="95.97156398104265"/>
+        </scene>
+        <!--Company Categories View Controller-->
+        <scene sceneID="7p0-h3-Gkz">
+            <objects>
+                <tableViewController storyboardIdentifier="CompanyCategoriesVC" id="euJ-md-69d" customClass="CompanyCategoriesViewController" customModule="firstApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="md1-yJ-RYY">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="yOG-Qp-gS7">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yOG-Qp-gS7" id="Di2-48-OHD">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="euJ-md-69d" id="iH2-Vy-5UX"/>
+                            <outlet property="delegate" destination="euJ-md-69d" id="rf3-Ld-xcC"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JHR-Vv-bdz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2943" y="96"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="6PN-hq-Xi4">
+            <objects>
+                <tableViewController storyboardIdentifier="DetailVC" id="FOU-EG-ydU" customClass="DetailViewController" customModule="firstApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="k75-Fb-aOI">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="Ea2-Ki-ngm" detailTextLabel="m6J-IG-psT" style="IBUITableViewCellStyleSubtitle" id="pvK-VP-PCI">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pvK-VP-PCI" id="z8Y-nD-xY4">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ea2-Ki-ngm">
+                                            <rect key="frame" x="20" y="7.0000000000000009" width="25" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m6J-IG-psT">
+                                            <rect key="frame" x="19.999999999999996" y="23.333333333333336" width="40.666666666666664" height="13.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FOU-EG-ydU" id="SjC-OW-lNj"/>
+                            <outlet property="delegate" destination="FOU-EG-ydU" id="4qF-50-04X"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DrR-i2-3AC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3654" y="96"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mal-ga-rvG">

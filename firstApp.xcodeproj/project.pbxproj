@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B33D12B288D7E1500BA793F /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D12A288D7E1500BA793F /* Company.swift */; };
-		4B33D12D288D9C7900BA793F /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D12C288D9C7900BA793F /* Companies.swift */; };
 		4B33D12F288D9FCB00BA793F /* CompanyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D12E288D9FCB00BA793F /* CompanyType.swift */; };
+		4B33D131289127ED00BA793F /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D130289127ED00BA793F /* UserProperties.swift */; };
+		4B33D133289183E900BA793F /* CompanyCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D132289183E900BA793F /* CompanyCategoriesViewController.swift */; };
+		4B33D1352891840800BA793F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D1342891840800BA793F /* DetailViewController.swift */; };
+		4B33D137289193F000BA793F /* InstrumentEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D136289193F000BA793F /* InstrumentEffect.swift */; };
+		4B33D13A2891949300BA793F /* ComapanyCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33D1392891949300BA793F /* ComapanyCategories.swift */; };
 		4B9A0E26288442290014F27F /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0E23288442280014F27F /* MainMenuViewController.swift */; };
 		4B9A0E27288442290014F27F /* PhoneCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0E24288442280014F27F /* PhoneCheckViewController.swift */; };
 		4B9A0E28288442290014F27F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0E25288442280014F27F /* SignInViewController.swift */; };
@@ -18,7 +21,7 @@
 		4BD7FD662884314200DE9F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD7FD642884314200DE9F27 /* Main.storyboard */; };
 		4BD7FD682884314300DE9F27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD7FD672884314300DE9F27 /* Assets.xcassets */; };
 		4BD7FD6B2884314300DE9F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD7FD692884314300DE9F27 /* LaunchScreen.storyboard */; };
-		4BDFE9E3288A94040016AAD1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDFE9E2288A94040016AAD1 /* User.swift */; };
+		4BDFE9E3288A94040016AAD1 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDFE9E2288A94040016AAD1 /* RegisterUser.swift */; };
 		4BEC5744288448030041DD82 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC5743288448030041DD82 /* Styling.swift */; };
 		4BEC57462886A6AA0041DD82 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC57452886A6AA0041DD82 /* Helper.swift */; };
 		A700167E937D84DCF869F1D0 /* Pods_firstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9571A78D07E6701BA070FE3C /* Pods_firstApp.framework */; };
@@ -26,9 +29,12 @@
 
 /* Begin PBXFileReference section */
 		1576067ABE307E2A6E03277B /* Pods-firstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstApp.debug.xcconfig"; path = "Target Support Files/Pods-firstApp/Pods-firstApp.debug.xcconfig"; sourceTree = "<group>"; };
-		4B33D12A288D7E1500BA793F /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
-		4B33D12C288D9C7900BA793F /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		4B33D12E288D9FCB00BA793F /* CompanyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyType.swift; sourceTree = "<group>"; };
+		4B33D130289127ED00BA793F /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
+		4B33D132289183E900BA793F /* CompanyCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCategoriesViewController.swift; sourceTree = "<group>"; };
+		4B33D1342891840800BA793F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4B33D136289193F000BA793F /* InstrumentEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentEffect.swift; sourceTree = "<group>"; };
+		4B33D1392891949300BA793F /* ComapanyCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComapanyCategories.swift; sourceTree = "<group>"; };
 		4B9A0E23288442280014F27F /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		4B9A0E24288442280014F27F /* PhoneCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCheckViewController.swift; sourceTree = "<group>"; };
 		4B9A0E25288442280014F27F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +45,7 @@
 		4BD7FD672884314300DE9F27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BD7FD6A2884314300DE9F27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BD7FD6C2884314300DE9F27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BDFE9E2288A94040016AAD1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4BDFE9E2288A94040016AAD1 /* RegisterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
 		4BEC5743288448030041DD82 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
 		4BEC57452886A6AA0041DD82 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		745563B47F9D0C0A33E34198 /* Pods-firstApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firstApp.release.xcconfig"; path = "Target Support Files/Pods-firstApp/Pods-firstApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,10 +76,11 @@
 		4B33D129288D7DE200BA793F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4BDFE9E2288A94040016AAD1 /* User.swift */,
-				4B33D12A288D7E1500BA793F /* Company.swift */,
-				4B33D12C288D9C7900BA793F /* Companies.swift */,
+				4BDFE9E2288A94040016AAD1 /* RegisterUser.swift */,
+				4B33D130289127ED00BA793F /* UserProperties.swift */,
 				4B33D12E288D9FCB00BA793F /* CompanyType.swift */,
+				4B33D136289193F000BA793F /* InstrumentEffect.swift */,
+				4B33D1392891949300BA793F /* ComapanyCategories.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -100,9 +107,11 @@
 			isa = PBXGroup;
 			children = (
 				4B33D129288D7DE200BA793F /* Models */,
-				4B9A0E23288442280014F27F /* MainMenuViewController.swift */,
-				4B9A0E24288442280014F27F /* PhoneCheckViewController.swift */,
 				4B9A0E25288442280014F27F /* SignInViewController.swift */,
+				4B9A0E24288442280014F27F /* PhoneCheckViewController.swift */,
+				4B9A0E23288442280014F27F /* MainMenuViewController.swift */,
+				4B33D132289183E900BA793F /* CompanyCategoriesViewController.swift */,
+				4B33D1342891840800BA793F /* DetailViewController.swift */,
 				4BD7FD5E2884314200DE9F27 /* AppDelegate.swift */,
 				4BD7FD602884314200DE9F27 /* SceneDelegate.swift */,
 				4BD7FD642884314200DE9F27 /* Main.storyboard */,
@@ -238,17 +247,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B33D1352891840800BA793F /* DetailViewController.swift in Sources */,
 				4BEC5744288448030041DD82 /* Styling.swift in Sources */,
-				4B33D12D288D9C7900BA793F /* Companies.swift in Sources */,
 				4BEC57462886A6AA0041DD82 /* Helper.swift in Sources */,
-				4B33D12B288D7E1500BA793F /* Company.swift in Sources */,
 				4B9A0E27288442290014F27F /* PhoneCheckViewController.swift in Sources */,
 				4B9A0E26288442290014F27F /* MainMenuViewController.swift in Sources */,
-				4BDFE9E3288A94040016AAD1 /* User.swift in Sources */,
+				4B33D13A2891949300BA793F /* ComapanyCategories.swift in Sources */,
+				4BDFE9E3288A94040016AAD1 /* RegisterUser.swift in Sources */,
 				4BD7FD5F2884314200DE9F27 /* AppDelegate.swift in Sources */,
 				4B9A0E28288442290014F27F /* SignInViewController.swift in Sources */,
+				4B33D137289193F000BA793F /* InstrumentEffect.swift in Sources */,
+				4B33D133289183E900BA793F /* CompanyCategoriesViewController.swift in Sources */,
 				4B33D12F288D9FCB00BA793F /* CompanyType.swift in Sources */,
 				4BD7FD612884314200DE9F27 /* SceneDelegate.swift in Sources */,
+				4B33D131289127ED00BA793F /* UserProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

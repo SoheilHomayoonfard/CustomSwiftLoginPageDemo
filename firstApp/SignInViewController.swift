@@ -13,8 +13,6 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var EmailTextField: UITextField!
     
-    @IBOutlet weak var PasswordTextField: UITextField!
-    
     @IBOutlet weak var RegisterButton: UIButton!
     
     @IBOutlet weak var ErrorLabel: UILabel!
@@ -22,14 +20,12 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         styly()
-        fetchData()
     }
     
     func styly(){
         ErrorLabel.isHidden = true
         Styling.styleTextField(PhoneNumberTextField)
         Styling.styleTextField(EmailTextField)
-        Styling.styleTextField(PasswordTextField)
         Styling.styleFilledButton(RegisterButton)
     }
     
@@ -37,7 +33,7 @@ class SignInViewController: UIViewController {
         if PhoneNumberTextField.text?.trimmingCharacters(in:.whitespacesAndNewlines) != ""{
             let cleanPhoneNumber = PhoneNumberTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
             ErrorLabel.isHidden = true
-            if Helper.isPhoneNumber(cleanPhoneNumber) {
+            if Helper.isValidPhoneNumber(cleanPhoneNumber) {
                 ErrorLabel.isHidden = true
             } else {
                 ErrorLabel.text = "Please enter valid Phone Number!"
@@ -50,40 +46,48 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func EmailFieldCheck(_ sender: Any) {
-        if  EmailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            ErrorLabel.text = "Please enter your email!"
-            ErrorLabel.isHidden = false
-        }else{
+        if EmailTextField.text?.trimmingCharacters(in:.whitespacesAndNewlines) != ""{
+            let cleanEmailField = EmailTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
             ErrorLabel.isHidden = true
-        }
-    }
-    
-    @IBAction func PasswordFieldCheck(_ sender: Any) {
-        if  PasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            ErrorLabel.text = "Please enter your password!"
+            if Helper.isValidEmail(cleanEmailField){
+                ErrorLabel.isHidden = true
+            } else {
+                ErrorLabel.text = "Please enter valid Email!"
+                ErrorLabel.isHidden = false
+            }
+        }else {
+            ErrorLabel.text = "Please enter your Email!"
             ErrorLabel.isHidden = false
-        }else{
-            ErrorLabel.isHidden = true
         }
     }
     
     @IBAction func RegisterButtonPressed(_ sender: Any) {
         let cleanPhoneNumber = PhoneNumberTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
+        let cleanEmailField = EmailTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
         if PhoneNumberTextField.text?.trimmingCharacters(in:.whitespacesAndNewlines) != ""
-            && PasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != ""
             && EmailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != ""
-            && Helper.isPhoneNumber(cleanPhoneNumber)
+            && Helper.isValidPhoneNumber(cleanPhoneNumber)
+            && Helper.isValidEmail(cleanEmailField)
         {
-                let PhoneCheckVC = storyboard?.instantiateViewController(identifier: "PCViewController") as? PhoneCheckViewController
-                view.window?.rootViewController = PhoneCheckVC
-                view.window?.makeKeyAndVisible()
+           RegisterData(PhoneNumber: cleanPhoneNumber, Email: cleanEmailField)
+           let PhoneCheckVC = storyboard?.instantiateViewController(identifier: "PCViewController") as? PhoneCheckViewController
+           view.window?.rootViewController = PhoneCheckVC
+           view.window?.makeKeyAndVisible()
         }
     }
 }
 
 extension SignInViewController {
-    func fetchData() {
-        
+    func RegisterData(PhoneNumber phoneNumber:String,Email email:String) {
+        let params: Parameters = [
+            "email": email,
+            "phone_number": phoneNumber]
+        AF.request("https://api-dev.fasttse.com/api/v2/user/register", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate().responseDecodable(of: ActivationValidate.self) { response in
+            guard let ActivateTTL = response.value else {
+                print("Trouble parsing Json!")
+                return }
+            RegisterUser(PhoneNumber: phoneNumber, Email: email, ActivateValidationTime: ActivateTTL.ActivateValidationTime)
+        }
     }
     
 }

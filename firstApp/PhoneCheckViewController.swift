@@ -9,9 +9,15 @@ import Alamofire
 
 class PhoneCheckViewController: UIViewController {
     
-    var counter : Int = 60
+    var counter : Int = 20
+    
+    var activateCodeValidationTime = RegisterUser.ActivateValidationTime
     
     var timer : Timer!
+    
+    var ValidationTimer : Timer!
+    
+    var isCodeValid = true
     
     @IBOutlet weak var ActivationCodeTextField: UITextField!
     
@@ -23,8 +29,8 @@ class PhoneCheckViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
-        initTimer()
+        
+        initTimers()
         Styling.styleTextField(ActivationCodeTextField)
         Styling.styleFilledButton(SignUpButton)
         Styling.styleHollowButton(ResendButton)
@@ -32,16 +38,25 @@ class PhoneCheckViewController: UIViewController {
     }
     
     @IBAction func SignUpButtonPressed(_ sender: Any) {
-        let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
-        view.window?.rootViewController = MainMenu
-        view.window?.makeKeyAndVisible()
+        let cleanActivationCode = ActivationCodeTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
+        
+        if isCodeValid && cleanActivationCode == String(RegisterUser.AvtivateCode){
+            fetchActivationData(ActivationCode: Int(cleanActivationCode)!)
+            let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
+            view.window?.rootViewController = MainMenu
+            view.window?.makeKeyAndVisible()
+        }else {
+            print ("Activation Code is Wrong!")
+        }
     }
     
     @IBAction func ResendButtonPressed(_ sender: Any) {
-        // change Activation code
-        counter = 60
+        fetchResendActivationData()
+        isCodeValid = true
+        activateCodeValidationTime = RegisterUser.ActivateValidationTime
+        counter = 20
         ResendButton.isEnabled = false
-        initTimer()
+        initTimers()
     }
     
     @IBAction func UnwindButtonPressed(_ sender: Any) {
@@ -50,11 +65,12 @@ class PhoneCheckViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
     
-    func initTimer () {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(step), userInfo: nil, repeats: true)
+    func initTimers () {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ResendStep), userInfo: nil, repeats: true)
+        ValidationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ValidationStep), userInfo: nil, repeats: true)
     }
     
-    @objc func step(){
+    @objc func ResendStep(){
         if counter > 0{
             counter -= 1
             ResendButton.setTitle("Resend Activation Code in \(counter)", for: .normal)
@@ -64,11 +80,46 @@ class PhoneCheckViewController: UIViewController {
             ResendButton.isEnabled = true
         }
     }
+    
+    @objc func ValidationStep(){
+        if activateCodeValidationTime > 0 {
+            activateCodeValidationTime -= 1
+        }else{
+            isCodeValid = false
+            ValidationTimer.invalidate()
+        }
+    }
 }
+
+// MARK: -> Networking
 
 extension PhoneCheckViewController {
-    func fetchData() {
+    func fetchActivationData(ActivationCode activationCode : Int) {
+        let params: Parameters = [
+            "phone_number": RegisterUser.PhoneNumber,
+            "code": String(activationCode)]
+        AF.request("https://api-dev.fasttse.com/api/v2/user/activate", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseDecodable(of : User.self){ response in
+            print(response)
+            guard let ActivateTTL = response.value else {
+                print("Trouble parsing Json!")
+                return }
+            let BasicUser = ActivateTTL.basics
+            let User = UserProperties(token: ActivateTTL.token, refreshToken: ActivateTTL.refreshToken, ttl: ActivateTTL.ttl, email: BasicUser.email, id: BasicUser.id, name: BasicUser.name, phoneNumber: BasicUser.phoneNumber)
+            //pass the user
+        }
     }
     
+    func fetchResendActivationData() {
+        let params: Parameters = [
+            "phone_number": RegisterUser.PhoneNumber]
+        AF.request("https://api-dev.fasttse.com/api/v2/user/activate/code", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate().responseDecodable(of: ActivationValidate.self) { response in
+            guard let ActivateTTL = response.value else {
+                print("Trouble parsing Json!")
+                return }
+            RegisterUser.ActivateValidationTime = ActivateTTL.ActivateValidationTime
+            RegisterUser.PhoneNumber = ActivateTTL.PhoneNumber
+        }
+    }
+    
+    
 }
-

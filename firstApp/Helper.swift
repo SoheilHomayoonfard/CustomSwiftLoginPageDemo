@@ -9,17 +9,15 @@ import Foundation
 
 class Helper{
     
-    static func isPhoneNumber(_ PhoneNumber: String) -> Bool {
-        for char in PhoneNumber {
-            let scalarValues = String(char).unicodeScalars
-            let charAscii = scalarValues[scalarValues.startIndex].value
-            if charAscii < 48 || charAscii > 57 {
-                return false
-            }
-        }
-        return true
+    static func isValidPhoneNumber(_ PhoneNumber: String) -> Bool {
+        let regEx = "^09[0-9]{9}$"
+        let phoneCheck = NSPredicate(format: "SELF MATCHES[c] %@", regEx)
+        return phoneCheck.evaluate(with: PhoneNumber)
     }
     
-    
-    
+    static func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
 }

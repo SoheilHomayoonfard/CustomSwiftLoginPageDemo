@@ -6,7 +6,6 @@ target 'firstApp' do
   use_frameworks!
 
   # Pods for firstApp
-  pod 'Postman'
   pod 'Alamofire'
   pod 'FontAwesome.swift'
 
