@@ -146,6 +146,7 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Use different number"/>
                                         <connections>
                                             <action selector="unwindButtonPressed:" destination="sYf-26-M0Q" eventType="touchUpInside" id="GEo-Ra-P6r"/>
+                                            <segue destination="ckM-1r-4tT" kind="unwind" unwindAction="unwindToSignIn:" id="uWO-JB-TS9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -168,10 +169,11 @@
                         <outlet property="activationCodeTextField" destination="27B-Gj-d1c" id="y4x-df-xup"/>
                         <outlet property="resendButton" destination="aST-it-M34" id="X42-GP-1AE"/>
                         <outlet property="signUpButton" destination="bNT-EA-tfv" id="jOh-73-h2L"/>
-                        <outlet property="unwindButton" destination="Ttj-Oc-5PO" id="gyB-z2-QZz"/>
+                        <outlet property="unwindButton" destination="Ttj-Oc-5PO" id="E9Z-a4-edL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFZ-cI-FCz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ckM-1r-4tT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1467" y="96"/>
         </scene>
@@ -199,6 +201,7 @@
                             <outlet property="delegate" destination="pK7-eO-WOp" id="jme-s5-cBb"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="ZuM-Xg-JOW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qg3-nG-KKB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

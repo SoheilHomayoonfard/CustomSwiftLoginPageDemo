@@ -7,6 +7,5 @@ target 'firstApp' do
 
   # Pods for firstApp
   pod 'Alamofire'
-  pod 'FontAwesome.swift'
 
 end
