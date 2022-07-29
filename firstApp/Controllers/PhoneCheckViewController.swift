@@ -18,7 +18,7 @@ class PhoneCheckViewController: UIViewController {
     
     //MARK: - Properties
     
-    var counter : Int = 20
+    var counter : Int = RegisterUser.ActivateValidationTime
     var activateCodeValidationTime = RegisterUser.ActivateValidationTime
     var timer : Timer!
     var ValidationTimer : Timer!
@@ -34,7 +34,7 @@ extension PhoneCheckViewController {
         initTimers()
         Styling.styleTextField(activationCodeTextField)
         Styling.styleFilledButton(signUpButton)
-        Styling.styleHollowButton(resendButton)
+        Styling.styleFilledButton(resendButton)
         Styling.styleFilledButton(unwindButton)
     }
 }
