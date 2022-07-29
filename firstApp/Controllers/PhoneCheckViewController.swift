@@ -15,6 +15,7 @@ class PhoneCheckViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var unwindButton: UIButton!
+    @IBOutlet weak var ErrorLabel: UILabel!
     
     //MARK: - Properties
     
@@ -28,10 +29,10 @@ class PhoneCheckViewController: UIViewController {
 //MARK: - VC Lifecycle
 
 extension PhoneCheckViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initTimers()
+        ErrorLabel.isHidden = true
         Styling.styleTextField(activationCodeTextField)
         Styling.styleFilledButton(signUpButton)
         Styling.styleFilledButton(resendButton)
@@ -42,7 +43,6 @@ extension PhoneCheckViewController {
 //MARK: - Methods
 
 extension PhoneCheckViewController {
-    
     func initTimers () {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(resendStep), userInfo: nil, repeats: true)
         ValidationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(validationStep), userInfo: nil, repeats: true)
@@ -106,12 +106,13 @@ extension PhoneCheckViewController {
         let cleanActivationCode = activationCodeTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
         
         if isCodeValid && cleanActivationCode == String(RegisterUser.AvtivateCode){
+            ErrorLabel.isHidden = true
             fetchActivationData(ActivationCode: Int(cleanActivationCode)!)
             let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
             view.window?.rootViewController = MainMenu
             view.window?.makeKeyAndVisible()
         }else {
-            print ("Activation Code is Wrong!")
+            ErrorLabel.isHidden = false
         }
     }
     
