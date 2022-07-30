@@ -8,7 +8,7 @@ import UIKit
 
 class DetailViewController: UITableViewController {
     
-    //MARK: - Properties
+//MARK: - Properties
     
     static var JsonData : CompanyType?
     static var items: [Displayable] = []
@@ -43,4 +43,16 @@ extension DetailViewController {
         cell.detailTextLabel?.text = item.subtitleLabel
         return cell
     }
+}
+
+ //MARK: - Actions
+
+extension DetailViewController {
+    
+    @IBAction func unwindToCompanyCategories(_ sender: Any) {
+        let CompanyCategoriesVC = storyboard?.instantiateViewController(identifier: "CompanyCategoriesVC") as? CompanyCategoriesViewController
+        view.window?.rootViewController = CompanyCategoriesVC
+        view.window?.makeKeyAndVisible()
+    }
+
 }

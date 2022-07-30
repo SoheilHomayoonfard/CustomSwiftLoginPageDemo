@@ -66,3 +66,18 @@ extension CompanyCategoriesViewController {
     }
 
 }
+
+ //MARK: - Actions
+
+extension CompanyCategoriesViewController{
+    
+    @IBAction func unwindToCompanyType(_ sender: Any) {
+        let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
+        view.window?.rootViewController = MainMenu
+        view.window?.makeKeyAndVisible()
+    }
+    
+}
+
+    
+
