@@ -68,6 +68,20 @@ extension PhoneCheckViewController {
         }
     }
     
+    func segueToMainMenu (){
+        let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
+        view.window?.rootViewController = MainMenu
+        view.window?.makeKeyAndVisible()
+    }
+    
+    func resetTimers(){
+        isCodeValid = true
+        activateCodeValidationTime = RegisterUser.ActivateValidationTime
+        counter = 20
+        resendButton.isEnabled = false
+        initTimers()
+    }
+    
     //MARK: Networking
     
     func fetchActivationData(ActivationCode activationCode : Int) {
@@ -75,13 +89,15 @@ extension PhoneCheckViewController {
             "phone_number": RegisterUser.PhoneNumber,
             "code": String(activationCode)]
         AF.request("https://api-dev.fasttse.com/api/v2/user/activate", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseDecodable(of : User.self){ response in
-            print(response)
-            guard let ActivateTTL = response.value else {
-                print("Trouble parsing Json!")
-                return }
-            let BasicUser = ActivateTTL.basics
-            let User = UserProperties(token: ActivateTTL.token, refreshToken: ActivateTTL.refreshToken, ttl: ActivateTTL.ttl, email: BasicUser.email, id: BasicUser.id, name: BasicUser.name, phoneNumber: BasicUser.phoneNumber)
-            //pass the user
+            if (response.error == nil){
+                guard let ActivateTTL = response.value else {
+                    print("Trouble parsing Json!")
+                    return }
+//              let BasicUser = ActivateTTL.basics
+//              let User = UserProperties(token: ActivateTTL.token, refreshToken: ActivateTTL.refreshToken, ttl: ActivateTTL.ttl, email: BasicUser.email, id: BasicUser.id,                        name: BasicUser.name, phoneNumber: BasicUser.phoneNumber)
+                                                        // ------------------------pass the user ----------------------- //
+                self.segueToMainMenu()
+            }
         }
     }
     
@@ -89,11 +105,14 @@ extension PhoneCheckViewController {
         let params: Parameters = [
             "phone_number": RegisterUser.PhoneNumber]
         AF.request("https://api-dev.fasttse.com/api/v2/user/activate/code", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate().responseDecodable(of: ActivationValidate.self) { response in
-            guard let ActivateTTL = response.value else {
-                print("Trouble parsing Json!")
-                return }
-            RegisterUser.ActivateValidationTime = ActivateTTL.ActivateValidationTime
-            RegisterUser.PhoneNumber = ActivateTTL.PhoneNumber
+            if (response.error == nil){
+                guard let ActivateTTL = response.value else {
+                    print("Trouble parsing Json!")
+                    return }
+                RegisterUser.ActivateValidationTime = ActivateTTL.ActivateValidationTime
+                RegisterUser.PhoneNumber = ActivateTTL.PhoneNumber
+                self.resetTimers()
+            }
         }
     }
 }
@@ -104,13 +123,9 @@ extension PhoneCheckViewController {
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
         let cleanActivationCode = activationCodeTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
-        
         if isCodeValid && cleanActivationCode == String(RegisterUser.AvtivateCode){
             ErrorLabel.isHidden = true
             fetchActivationData(ActivationCode: Int(cleanActivationCode)!)
-            let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
-            view.window?.rootViewController = MainMenu
-            view.window?.makeKeyAndVisible()
         }else {
             ErrorLabel.isHidden = false
         }
@@ -118,12 +133,9 @@ extension PhoneCheckViewController {
     
     @IBAction func resendButtonPressed(_ sender: Any) {
         fetchResendActivationData()
-        isCodeValid = true
-        activateCodeValidationTime = RegisterUser.ActivateValidationTime
-        counter = 20
-        resendButton.isEnabled = false
-        initTimers()
     }
+    
+    
     
     @IBAction func unwindButtonPressed(_ sender: Any) {
         let SignInVC = storyboard?.instantiateViewController(identifier: "SignInVC") as? SignInViewController

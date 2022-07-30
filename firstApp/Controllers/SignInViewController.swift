@@ -38,18 +38,28 @@ extension SignInViewController {
         Styling.styleFilledButton(registerButton)
     }
     
-    //MARK: Networking
+    func segueToPhoneCheck (){
+        let PhoneCheckVC = storyboard?.instantiateViewController(identifier: "PCViewController") as? PhoneCheckViewController
+        view.window?.rootViewController = PhoneCheckVC
+        view.window?.makeKeyAndVisible()
+    }
     
-    func registerData(PhoneNumber phoneNumber:String,Email email:String) {
+//MARK: - Networking
+    
+    func registerData(PhoneNumber phoneNumber:String,Email email:String){
         let params: Parameters = [
             "email": email,
             "phone_number": phoneNumber]
         AF.request("https://api-dev.fasttse.com/api/v2/user/register", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate().responseDecodable(of: ActivationValidate.self) { response in
-            guard let ActivateTTL = response.value else {
-                print("Trouble parsing Json!")
-                return }
-            RegisterUser(PhoneNumber: phoneNumber, Email: email, ActivateValidationTime: ActivateTTL.ActivateValidationTime)
-        }
+            if response.error == nil {
+                guard let ActivateTTL = response.value else {
+                    print("Trouble parsing Json!")
+                    return}
+                RegisterUser(PhoneNumber: phoneNumber, Email: email, ActivateValidationTime: ActivateTTL.ActivateValidationTime)
+                self.segueToPhoneCheck()
+                
+            }
+        }
     }
 }
 
@@ -89,7 +99,7 @@ extension SignInViewController {
         }
     }
     
-    @IBAction func registerButtonPressed(_ sender: Any) {
+    @IBAction func registerButtonPressed(_ sender: Any)  {
         let cleanPhoneNumber = phoneNumberTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
         let cleanEmailField = emailTextField.text!.trimmingCharacters(in:.whitespacesAndNewlines)
         
@@ -97,11 +107,7 @@ extension SignInViewController {
             && emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != ""
             && Helper.isValidPhoneNumber(cleanPhoneNumber)
             && Helper.isValidEmail(cleanEmailField) {
-            
-            self.registerData(PhoneNumber: cleanPhoneNumber, Email: cleanEmailField)
-            let PhoneCheckVC = storyboard?.instantiateViewController(identifier: "PCViewController") as? PhoneCheckViewController
-            view.window?.rootViewController = PhoneCheckVC
-            view.window?.makeKeyAndVisible()
+                registerData(PhoneNumber: cleanPhoneNumber, Email: cleanEmailField)
         }
     }
 }
