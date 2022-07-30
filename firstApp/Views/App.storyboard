@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y3U-hr-e3S">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -87,11 +87,12 @@
                         <outlet property="phoneNumberTextField" destination="cam-N8-Tgx" id="jR9-7o-YzC"/>
                         <outlet property="registerButton" destination="6RT-Rr-Gsp" id="kRP-w9-FYq"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="oO7-pJ-HK0"/>
+                        <segue destination="sYf-26-M0Q" kind="show" identifier="SegueToPhoneCheck" id="P0N-8n-l4W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="723" y="96"/>
+            <point key="canvasLocation" x="1650.7692307692307" y="95.97156398104265"/>
         </scene>
         <!--Phone Check View Controller-->
         <scene sceneID="ZP9-Gp-8J7">
@@ -172,18 +173,20 @@
                             <constraint firstItem="040-V5-q7v" firstAttribute="leading" secondItem="74s-pr-F6D" secondAttribute="leading" constant="40" id="gn4-z4-EcD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Rro-dg-heL"/>
                     <connections>
                         <outlet property="ErrorLabel" destination="RnA-N9-7ff" id="0TR-C8-arZ"/>
                         <outlet property="activationCodeTextField" destination="27B-Gj-d1c" id="y4x-df-xup"/>
                         <outlet property="resendButton" destination="aST-it-M34" id="X42-GP-1AE"/>
                         <outlet property="signUpButton" destination="bNT-EA-tfv" id="jOh-73-h2L"/>
                         <outlet property="unwindButton" destination="Ttj-Oc-5PO" id="E9Z-a4-edL"/>
+                        <segue destination="pK7-eO-WOp" kind="show" identifier="SegueToMainMenu" id="ahH-BJ-oTW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFZ-cI-FCz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ckM-1r-4tT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1467" y="96"/>
+            <point key="canvasLocation" x="2395.3846153846152" y="95.97156398104265"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="8bJ-bA-PWJ">
@@ -210,10 +213,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZuM-Xg-JOW"/>
+                    <connections>
+                        <segue destination="euJ-md-69d" kind="show" identifier="SegueToCategory" id="VBq-6m-3Qn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qg3-nG-KKB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2201.5384615384614" y="95.97156398104265"/>
+            <point key="canvasLocation" x="3130.7692307692305" y="95.97156398104265"/>
         </scene>
         <!--Company Categories View Controller-->
         <scene sceneID="7p0-h3-Gkz">
@@ -223,15 +229,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="gLu-tS-0ZE">
-                            <rect key="frame" x="0.0" y="111" width="390" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Back" cornerStyle="dynamic"/>
-                            <connections>
-                                <action selector="unwindToCompanyType:" destination="euJ-md-69d" eventType="touchUpInside" id="K4g-lu-lWi"/>
-                            </connections>
-                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="yOG-Qp-gS7">
                                 <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
@@ -247,10 +244,14 @@
                             <outlet property="delegate" destination="euJ-md-69d" id="rf3-Ld-xcC"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="jk0-am-TcZ"/>
+                    <connections>
+                        <segue destination="FOU-EG-ydU" kind="show" identifier="SegueToDetail" id="0bf-xb-tXk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHR-Vv-bdz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2943" y="96"/>
+            <point key="canvasLocation" x="3883" y="96"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="6PN-hq-Xi4">
@@ -260,16 +261,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="tJT-n8-ohO">
-                            <rect key="frame" x="0.0" y="111" width="390" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Back" cornerStyle="small">
-                                <color key="baseForegroundColor" systemColor="tintColor"/>
-                            </buttonConfiguration>
-                            <connections>
-                                <action selector="unwindToCompanyCategories:" destination="FOU-EG-ydU" eventType="touchUpInside" id="c3Y-Bd-T41"/>
-                            </connections>
-                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="Ea2-Ki-ngm" detailTextLabel="m6J-IG-psT" style="IBUITableViewCellStyleSubtitle" id="pvK-VP-PCI">
                                 <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
@@ -301,24 +292,29 @@
                             <outlet property="delegate" destination="FOU-EG-ydU" id="4qF-50-04X"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="h6d-Ji-5mY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DrR-i2-3AC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3654" y="96"/>
+            <point key="canvasLocation" x="4642" y="96"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Mal-ga-rvG">
+        <scene sceneID="t9q-eL-8a5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="KTy-yp-Lin" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y3U-hr-e3S" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ikC-JA-Zaq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ows-H8-qdT">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bIa-AI-KJd"/>
+                    </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VQq-0R-ZjR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RNx-ZR-E0m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17.39130434782609" y="95.758928571428569"/>
+            <point key="canvasLocation" x="878" y="96"/>
         </scene>
     </scenes>
     <resources>
@@ -330,9 +326,6 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

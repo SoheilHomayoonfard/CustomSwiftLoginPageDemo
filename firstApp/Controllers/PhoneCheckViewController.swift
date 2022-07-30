@@ -38,6 +38,17 @@ extension PhoneCheckViewController {
         Styling.styleFilledButton(resendButton)
         Styling.styleFilledButton(unwindButton)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
 }
 
 //MARK: - Methods
@@ -69,9 +80,7 @@ extension PhoneCheckViewController {
     }
     
     func segueToMainMenu (){
-        let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
-        view.window?.rootViewController = MainMenu
-        view.window?.makeKeyAndVisible()
+        self.performSegue(withIdentifier: "SegueToMainMenu", sender: self)
     }
     
     func resetTimers(){
@@ -90,12 +99,6 @@ extension PhoneCheckViewController {
             "code": String(activationCode)]
         AF.request("https://api-dev.fasttse.com/api/v2/user/activate", method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseDecodable(of : User.self){ response in
             if (response.error == nil){
-                guard let ActivateTTL = response.value else {
-                    print("Trouble parsing Json!")
-                    return }
-//              let BasicUser = ActivateTTL.basics
-//              let User = UserProperties(token: ActivateTTL.token, refreshToken: ActivateTTL.refreshToken, ttl: ActivateTTL.ttl, email: BasicUser.email, id: BasicUser.id,                        name: BasicUser.name, phoneNumber: BasicUser.phoneNumber)
-                                                        // ------------------------pass the user ----------------------- //
                 self.segueToMainMenu()
             }
         }
@@ -135,11 +138,7 @@ extension PhoneCheckViewController {
         fetchResendActivationData()
     }
     
-    
-    
     @IBAction func unwindButtonPressed(_ sender: Any) {
-        let SignInVC = storyboard?.instantiateViewController(identifier: "SignInVC") as? SignInViewController
-        view.window?.rootViewController = SignInVC
-        view.window?.makeKeyAndVisible()
+        navigationController!.popViewController(animated: true)
     }
 }

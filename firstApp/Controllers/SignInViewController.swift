@@ -39,9 +39,7 @@ extension SignInViewController {
     }
     
     func segueToPhoneCheck (){
-        let PhoneCheckVC = storyboard?.instantiateViewController(identifier: "PCViewController") as? PhoneCheckViewController
-        view.window?.rootViewController = PhoneCheckVC
-        view.window?.makeKeyAndVisible()
+        self.performSegue(withIdentifier: "SegueToPhoneCheck", sender: self)
     }
     
 //MARK: - Networking

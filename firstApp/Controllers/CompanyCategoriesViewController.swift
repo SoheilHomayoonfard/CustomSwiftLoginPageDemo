@@ -22,6 +22,7 @@ extension CompanyCategoriesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset = UIEdgeInsets(top: 1, left: 0, bottom: 0, right: 0)
         tableContentUpdate()
     }
 }
@@ -46,9 +47,7 @@ extension CompanyCategoriesViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let DetailVC = storyboard?.instantiateViewController(identifier: "DetailVC") as? DetailViewController
-            view.window?.rootViewController = DetailVC
-            view.window?.makeKeyAndVisible()
+            self.performSegue(withIdentifier: "SegueToDetail", sender: self)
         }
     }
     
@@ -67,17 +66,6 @@ extension CompanyCategoriesViewController {
 
 }
 
- //MARK: - Actions
-
-extension CompanyCategoriesViewController{
-    
-    @IBAction func unwindToCompanyType(_ sender: Any) {
-        let MainMenu = storyboard?.instantiateViewController(identifier: "MainMenuVC") as? MainMenuViewController
-        view.window?.rootViewController = MainMenu
-        view.window?.makeKeyAndVisible()
-    }
-    
-}
 
     
 

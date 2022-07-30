@@ -23,6 +23,16 @@ extension MainMenuViewController {
         super.viewDidLoad()
         self.fetchData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 }
 
 //MARK: - Methods
@@ -53,10 +63,7 @@ extension MainMenuViewController {
             let CompanyType = JSONData?.farabourse
             DetailViewController.items = CompanyType!.instrumentEffect
         }
-        let CompanyCategoriesVC = storyboard?.instantiateViewController(identifier: "CompanyCategoriesVC") as? CompanyCategoriesViewController
-        view.window?.rootViewController = CompanyCategoriesVC
-        view.window?.makeKeyAndVisible()
-        
+        self.performSegue(withIdentifier: "SegueToCategory", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -21,6 +21,7 @@ extension DetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset = UIEdgeInsets(top: 1, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -43,16 +44,4 @@ extension DetailViewController {
         cell.detailTextLabel?.text = item.subtitleLabel
         return cell
     }
-}
-
- //MARK: - Actions
-
-extension DetailViewController {
-    
-    @IBAction func unwindToCompanyCategories(_ sender: Any) {
-        let CompanyCategoriesVC = storyboard?.instantiateViewController(identifier: "CompanyCategoriesVC") as? CompanyCategoriesViewController
-        view.window?.rootViewController = CompanyCategoriesVC
-        view.window?.makeKeyAndVisible()
-    }
-
 }
