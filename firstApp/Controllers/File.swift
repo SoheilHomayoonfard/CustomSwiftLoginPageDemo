@@ -7,7 +7,7 @@
 import UIKit
 import Alamofire
 
-class MainMenuViewController: UITableViewController {
+class File: UITableViewController {
     
     //MARK: - Properties
     
